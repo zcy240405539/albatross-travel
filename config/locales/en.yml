@@ -1,0 +1,78 @@
+en:
+  hello: "Hello world"
+  welcome: "Welcome"
+  language: "English"
+  appname: "Albatross"
+  explore: "Explore"
+  activerecord:
+    attributes:
+      user:
+        language: "Language"
+        timezone: "Timezone"
+  models:
+    user: "User"
+  devise:
+    sessions:
+      new:
+        sign_out: "Logout"
+        sign_in: "Login"
+    registrations:
+      edit:
+        title: "Account Settings"
+      new:
+        sign_up: "Sign up"
+  home:
+    home:
+      title: "Explore Trip Life"
+    search:
+      title: "Search Result"
+      search: "Search"
+      searchText: "Articles,Attractions,Cities,Regions/Countries"
+  users:
+    show:
+      title: "My Articles"
+  posts:
+    show:
+      title: "Articles"
+    new:
+      title: "Share Aricles"
+    edit:
+      title: "Edit Aricles"
+    index:
+      title: "Articles List"
+  attractions:
+    show:
+      title: "Attractions"
+    new:
+      title: "New Attractions"
+    edit:
+      title: "Edit Attractions"
+    index:
+      title: "Attractions List"
+  cities:
+    show:
+      title: "Cities"
+    new:
+      title: "New Cities"
+    edit:
+      title: "Edit Cities"
+    index:
+      title: "Cities List"
+  regions:
+    show:
+      title: "Regions/Countries"
+    new:
+      title: "New Regions"
+    edit:
+      title: "Edit Regions"
+    index:
+      title: "Regions/Countries List"
+  itineraries:
+    show:
+      title: "Itineraries"
+    new:
+      title: "Create Itineraries"
+    edit:
+      title: "Edit Itineraries"
+    index:
+      title: "Itineraries List"

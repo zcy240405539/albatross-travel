@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="card-title"><strong> <%= @attraction.name %> </strong></h1>
+<ul class="list-inline text-muted mt-2">
+    <li class="list-inline-item">
+        <span><%= region_select (@attraction.region_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span><%= region_select (@attraction.city_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Attraction Name: <%= @attraction.name %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Local Name: <%= @attraction.localName %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Comments</span>
+    </li>
+</ul>
+
+<div class="field">
+  <%= @attraction.content.html_safe %>
+</div>
+
+
+<h1>Articles in <%= @attraction.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title    |</th>
+      <th>Region/Country    |</th>
+      <th>City    |</th>     
+      <th>Attraction    |</th>
+      <th>Views    |</th>     
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+    <% if @attraction.id == post.attraction_id %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= region_select (post.region_id) %></td>
+        <td><%= city_select (post.city_id) %></td>
+        <td><%= attraction_select (post.attraction_id) %></td>
+        <td><%= post.view %></td>
+        <td><%= link_to 'Show', post %></td>
+        <% if user_signed_in? %>
+        <% if current_user.superadmin_role? %>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+        <% end -%>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+  <% if current_user.superadmin_role? %>
+    <%= link_to 'New Article', new_post_path %>
+  <% end %>
+<% end %>

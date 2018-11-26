@@ -1,0 +1,16 @@
+<p>
+<li>Day: <%= daily.daynumber %> | Date: <%= daily.dailydate.try(:strftime, '%v') %> </li>
+<span>Country: <%= region_select (daily.region_id) %></span>
+<span> | City: <%= city_select (daily.city_id) %></span>
+<span> | Attraction: <%= attraction_select (daily.attraction_id) %></span>
+</p>
+<p>
+<%# time_ago_in_words(daily.created_at) %>
+<li>Content: <%= daily.content %></li>
+</p>
+
+<% if user_signed_in? %>
+	<% if @current_user.id == daily.user_id %>
+	<p><%= link_to 'Delete',[daily.itinerary,daily], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	<% end %>
+<% end %>

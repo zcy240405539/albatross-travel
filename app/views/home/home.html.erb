@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%#<link rel="icon" href="https://getbootstrap.com/favicon.ico">%>
+    <link rel="icon" href="https://image.flaticon.com/icons/svg/47/47259.svg">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <% if user_signed_in? %>
+  <main role="main" class="container " >
+    <h1 class="jumbotron-heading">Home Page</h1>
+    <h1 class="jumbotron-heading"><%= t('welcome') %>!</h1>
+    <h1 class="jumbotron-heading"><%= current_user.email %></h1>
+  </main>
+
+  <% else %>
+    <!-- Begin page content -->
+    <main role="main" class="container " >
+      <section class="jumbotron-fluid text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Explore</h1>
+          <p class="lead text-muted">Travel. Life.</p>
+          <p>
+            <a href="/account/login" class="btn btn-primary btn-lg"><%= t('devise.sessions.new.sign_in') %></a>
+            <a href="/account/sign_up" class="btn btn-secondary btn-lg"><%= t('devise.registrations.new.sign_up') %></a>
+          </p>
+        </div>
+      </section>
+
+    </main>
+  <% end %>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+  </body>
+  
+</html>

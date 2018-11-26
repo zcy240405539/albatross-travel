@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="card-title"><strong> <%= @region.name %> </strong></h1>
+<ul class="list-inline text-muted mt-2">
+    <li class="list-inline-item">
+        <span>Region Name: <%= @region.name %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Local Name: <%= @region.localName %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Comments</span>
+    </li>
+</ul>
+
+<div class="field">
+  <%= @region.content.html_safe %>
+</div>
+
+
+
+<h1>Cities in <%= @region.name %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name    |</th>
+      <th>Local Name    |</th>
+      <th>Intro    |</th>
+
+      <th>Region/Country    |</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+    <% if @region.id == city.region_id %>
+      <tr>
+        <td><%= city.name %></td>
+        <td><%= city.localName %></td>
+        <td><%= city.intro %></td>
+        <td><%# city.content %></td>
+        <td><%= region_select (city.region_id) %></td>
+        <td><%= link_to 'Show', city %></td>
+        <% if user_signed_in? %>
+        <% if current_user.superadmin_role? %>
+        <td><%= link_to 'Edit', edit_city_path(city) %></td>
+        <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+        <% end -%>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+	<% if current_user.superadmin_role? %>
+		<%= link_to 'New City', new_city_path %>
+	<% end %>
+<% end %>

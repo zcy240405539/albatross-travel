@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/"><%= t('appname') %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+	    data-target="#navbarSupportedContent"
+	    aria-controls="navbarSupportedContent"
+	    aria-expanded="false"
+	    aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+	    <li class="nav-item active">
+		<a class="nav-link" href="/posts"><%= t('posts.show.title') %></a>
+	    </li>
+	    <li class="nav-item active">
+		<a class="nav-link" href="/itineraries"><%= t('itineraries.show.title') %></a>
+	    </li>
+	    <li class="nav-item active dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+		   role="button" data-toggle="dropdown" aria-haspopup="true"
+		   aria-expanded="false"><%= t('explore') %></a>
+
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+		    <a class="dropdown-item" href="/regions"><%= t('regions.show.title') %></a>
+		    <a class="dropdown-item" href="/cities"><%= t('cities.show.title') %></a>
+		    <div class="dropdown-divider"></div>
+		    <a class="dropdown-item" href="/attractions"><%= t('attractions.show.title') %></a>
+		</div>
+	    </li>
+
+	    <% if user_signed_in? %>
+	    <li class="nav-item active">
+		<a class="nav-link" href="/posts/new"><%= t('posts.new.title') %></a>
+		</li>
+		<li class="nav-item active">
+		<a class="nav-link" href="/itineraries/new"><%= t('itineraries.new.title') %></a>
+		</li>
+		<% else %>
+		<li class="nav-item active">
+		<a class="nav-link" href="/account/login"><%= t('posts.new.title') %></a>
+		</li>
+		<li class="nav-item active">
+		<a class="nav-link" href="/account/login"><%= t('itineraries.new.title') %></a>
+		</li>
+		<% end %>
+	</ul>
+
+	<ul class="navbar-nav">
+		<%= form_tag('/search', local: true, method: :get, class: 'form-inline' ) do %>
+			<%= text_field_tag(:q, nil, data: { behavior: 'autocomplete' }, placeholder: (t('home.search.searchText')), class: 'form-control mr-sm-3') %>
+			&ensp;
+			<%= button_tag(t('home.search.search'), class: 'btn btn-outline-success my-2 my-sm-0', type: 'submit') %>
+		<% end %>
+	</ul>
+	&ensp;
+	<ul class="navbar-nav">
+	    <% if user_signed_in? %>
+		<li class="nav-item dropdown active">
+		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+		       role="button" data-toggle="dropdown" aria-haspopup="true"
+		       aria-expanded="false">
+			<%= icon('far', 'user') %>
+			<%# t('user')%>
+			<%= current_user.email %>
+		    </a>
+		    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+			<%= link_to(edit_user_registration_path,
+				    class: 'dropdown-item') do %>
+			    <%= icon('fas', 'cog') %>
+			    <%= t('devise.registrations.edit.title') %>
+			    <% end %>
+			<%= link_to(current_user, class: 'dropdown-item') do %>
+			    <%= icon('fas', 'newspaper') %>
+			    <%= t('users.show.title') %>
+			    <% end %>			
+			<div class="dropdown-divider"></div>
+			<%= link_to(destroy_user_session_path,
+				    method: :delete,
+				    class: "dropdown-item") do %>
+			    <%= icon('fas', 'sign-out-alt') %>
+			    <%= t('devise.sessions.new.sign_out')%>
+			<% end %>
+		    </div>
+		</li>
+
+	    <% else %>
+	    <li class="nav-item active">
+		<%= link_to(new_user_session_path, class: "nav-link") do %>
+		    <%= icon('fas', 'sign-in-alt') %>
+		    <%= t('devise.sessions.new.sign_in')%>
+		<% end %>
+	    </li>
+	    <% end %>
+	</ul>
+
+    </div>
+</nav>

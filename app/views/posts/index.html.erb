@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to post.title, post %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment( post.content), length: 100) %>
+          <p> <%= link_to "read full", post, class: 'text-primary' %> </p>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+           <span><%= region_select (post.region_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= city_select (post.city_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= attraction_select (post.attraction_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span>views: <%= post.view %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span>comments</span>
+          </li>
+        </ul>
+      </div>
+      </div>
+    <% end %>
+  </tbody>
+
+<br>
+
+<% if user_signed_in? %>
+<p> <%= link_to "New Articles", new_post_path, class: 'btn btn-primary active' %> </p>
+<% else %>
+<p> <%= link_to "New Articles", new_user_session_path, class: 'btn btn-primary active' %> </p>
+<% end %>

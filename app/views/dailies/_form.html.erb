@@ -1,0 +1,39 @@
+<%= form_for([@itinerary, @itinerary.dailies.build]) do |form| %>
+
+  <p>
+    <%= form.label 'Day Number' %><br>
+    <%= form.text_field :daynumber %>
+  </p>
+
+  <p>
+    <%= form.label 'Select Date' %><br>
+    <%# form.text_field :dailydate %>
+    <%= form.date_select :dailydate %>
+  </p>
+
+  <p>
+  <%= form.label :region_id %>
+  <%= form.collection_select :region_id, Region.order(:name), :id, :name, include_blank: true %>
+  </p>
+
+  <p>
+  <%= form.label :city_id %>
+  <%= form.grouped_collection_select :city_id, Region.order(:name), :cities, :name, :id, :name, include_blank: true %>
+  </p>
+
+  <p>
+  <%= form.label :attraction_id %>
+  <%= form.grouped_collection_select :attraction_id, City.order(:name), :attractions, :name, :id, :name, include_blank: true %>
+  </p>
+
+  <p><%= "Cannot Find the Attraction You Need?" %>&ensp;<%= link_to "Create New Attraction",  new_attraction_path, class: 'text-primary' %></p>
+  <p>
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </p>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

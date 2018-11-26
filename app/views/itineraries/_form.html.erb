@@ -1,0 +1,38 @@
+<%= form_with(model: itinerary, local: true) do |form| %>
+  <% if itinerary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
+
+      <ul>
+      <% itinerary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%#div class="field"%>
+    <%# form.label :localName %>
+    <%# form.text_field :localName %>
+  <%#/div%>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :intro %>
+    <%= form.text_area :intro %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

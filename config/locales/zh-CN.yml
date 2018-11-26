@@ -1,0 +1,79 @@
+zh-CN:
+  hello: "Hello world"
+  welcome: "欢迎"
+  language: "中文"
+  appname: "候鸟旅行"
+  explore: "发现"
+  activerecord:
+    attributes:
+      user:
+        language: "语言"
+        timezone: "时区"
+  models:
+    user: "用户"
+  devise:
+    sessions:
+      new:
+        sign_out: "登出"
+        sign_in: "登录"
+    registrations:
+      edit:
+        title: "帐号设定"
+      new:
+        sign_up: "注册"
+  home:
+    home:
+      title: "行 万里路"
+    search:
+      title: "搜索结果"
+      search: "搜索"
+      searchText: "搜索攻略,景点,城市,国家/地区"
+  users:
+    show:
+      title: "我的旅途"
+  posts:
+    show:
+      title: "攻略"
+    new:
+      title: "分享攻略"
+    edit:
+      title: "编辑攻略"
+    index:
+      title: "攻略列表"
+  attractions:
+    show:
+      title: "景点"
+    new:
+      title: "新建景点"
+    edit:
+      title: "编辑景点"
+    index:
+      title: "景点列表"
+  cities:
+    show:
+      title: "城市"
+    new:
+      title: "新建城市"
+    edit:
+      title: "编辑城市"
+    index:
+      title: "城市列表"
+  regions:
+    show:
+      title: "地区/国家"
+    new:
+      title: "新建地区/国家"
+    edit:
+      title: "编辑地区/国家"
+    index:
+      title: "地区/国家列表"
+  itineraries:
+    show:
+      title: "行程安排"
+    new:
+      title: "创建行程"
+    edit:
+      title: "编辑行程"
+    index:
+      title: "行程单"
+

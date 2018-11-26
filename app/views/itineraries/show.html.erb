@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @itinerary.name %>
+</p>
+
+<p>
+  <strong>Localname:</strong>
+  <%# @itinerary.localName %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @itinerary.content %>
+</p>
+
+<p>
+  <strong>Intro:</strong>
+  <%= @itinerary.intro %>
+</p>
+<br>
+<% if user_signed_in? %>
+  <% if @itinerary.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_itinerary_path(@itinerary), class: 'btn btn-primary active' %> 
+  <% end %>
+<% end %>
+
+<br><br>
+<h2> <%= @itinerary.dailies.count %> Day(s) Trip </h2>
+<br>
+	<%= render @itinerary.dailies %> 
+<br><br>
+<% if user_signed_in? %>
+  <% if @itinerary.user_id == current_user.id %>
+	<h3>Add a new day<h3>
+	<%= render 'dailies/form' %> 
+  <% end %>
+<% end %>
+<br>
+<%= link_to 'Back', itineraries_path, class: 'btn btn-secondary active'%>

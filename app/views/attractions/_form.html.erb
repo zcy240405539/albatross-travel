@@ -1,0 +1,49 @@
+<%= form_with(model: attraction, local: true) do |form| %>
+  <% if attraction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attraction.errors.count, "error") %> prohibited this attraction from being saved:</h2>
+
+      <ul>
+      <% attraction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :localName %>
+    <%= form.text_field :localName %>
+  </div>
+
+  <div class="form-group">
+  <%= form.label :region_id %>
+  <%= form.collection_select :region_id, Region.order(:name), :id, :name, include_blank: true %>
+  </div>
+
+  <div class="form-group">
+  <%= form.label :city_id %>
+  <%= form.grouped_collection_select :city_id, Region.order(:name), :cities, :name, :id, :name, include_blank: true %>
+  </div>
+
+
+  <div class="form-group">
+  <%= form.label :intro %>
+  <%= form.text_area  :intro, autofocus: true, autocomplete: "Intro", 
+  class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :content %>
+    <%= form.cktext_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

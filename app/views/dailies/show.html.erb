@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @daily.name %>
+</p>
+
+<p>
+  <strong>Localname:</strong>
+  <%= @daily.localName %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @daily.content %>
+</p>
+
+<%= link_to 'Edit', edit_daily_path(@daily) %> |
+<%= link_to 'Back', dailies_path %>

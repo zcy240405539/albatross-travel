@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="card-title"><strong> <%= @post.title %> </strong></h1>
+<ul class="list-inline text-muted mt-2">
+    <li class="list-inline-item">
+        <span><%= region_select (@post.region_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span><%= city_select (@post.city_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span><%= attraction_select (@post.attraction_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>View: <%= @post.view %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Comments</span>
+    </li>
+</ul>
+
+<div class="field">
+  <%= @post.content.html_safe %>
+</div>
+
+<p> <%= link_to "Back", :back, class: 'btn btn-primary active' %> </p>

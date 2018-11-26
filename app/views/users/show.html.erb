@@ -1,0 +1,35 @@
+<h1>My Article</h1>
+
+<tbody>
+  <% @posts.each do |post| %>
+    <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to post.title, post %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment( post.content), length: 100) %>
+          <p> <%= link_to "read full", post, class: 'text-primary' %> </p>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+            <span>views: <%= post.view %></span>
+          </li>
+          <% if user_signed_in? %>
+          <% if @user.id == current_user.id -%>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Edit', edit_post_path(post) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </li>
+          <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</tbody>

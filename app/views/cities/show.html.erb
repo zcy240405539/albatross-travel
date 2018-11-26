@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="card-title"><strong> <%= @city.name %> </strong></h1>
+<ul class="list-inline text-muted mt-2">
+    <li class="list-inline-item">
+        <span><%= region_select (@city.region_id) %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>City Name: <%= @city.name %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Local Name: <%= @city.localName %></span>
+    </li>
+    <li class="list-inline-item">|</li>
+    <li class="list-inline-item">
+        <span>Comments</span>
+    </li>
+</ul>
+
+<div class="field">
+  <%= @city.content.html_safe %>
+</div>
+
+
+
+<h1>Attractions in <%= @city.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name    |</th>
+      <th>Local Name    |</th>
+      <th>Intro    |</th>
+
+      <th>Region/Country    |</th>
+      <th>City    |</th>     
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attractions.each do |attraction| %>
+    <% if @city.id == attraction.city_id %>
+      <tr>
+        <td><%= attraction.name %></td>
+        <td><%= attraction.localName %></td>
+        <td><%# attraction.content %></td>
+        <td><%= attraction.intro %></td>
+        <td><%= region_select (attraction.region_id) %></td>
+        <td><%= city_select (attraction.city_id) %></td>
+        <td><%= link_to 'Show', attraction %></td>
+        <% if user_signed_in? %>
+        <% if current_user.superadmin_role? %>
+        <td><%= link_to 'Edit', edit_attraction_path(attraction) %></td>
+        <td><%= link_to 'Destroy', attraction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
+        <% end -%>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+  <% if current_user.superadmin_role? %>
+    <%= link_to 'New Attraction', new_attraction_path %>
+  <% end %>
+<% end %>
