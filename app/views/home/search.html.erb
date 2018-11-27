@@ -14,18 +14,20 @@
           </span>
         </p>
       </div>
-      </div>
-    </tbody>
+      </div>    
     <% end %>
+  </tbody>
+  <br>
 <% end %>
-	<br>
+
 <% if @attractions.any? %>
 <h2><%= t('attractions.show.title') %></h2>
   <tbody>
     <% @attractions.each do |attraction| %>
         <div class="card bg-light mt-3">
       	<div class="card-body">
-        <h3 class="card-title"><strong><%= link_to attraction.name, attraction %></strong></h3>
+        <h3 class="card-title"><strong><%= link_to attraction.name, attraction %></strong>
+        </h3>
         <p class="card-text">
           <span class="postpreview">
           <td><%= attraction.localName %></td>
@@ -37,9 +39,10 @@
         </div>
       	</div>
     <% end %>
-  	</tbody>
+  </tbody>
 	<br>
 <% end %>
+
 <% if @cities.any? %>
 <h2><%= t('cities.show.title') %></h2>
   <tbody>
@@ -58,9 +61,10 @@
         </div>
       	</div>
     <% end %>
-  	</tbody>
+  </tbody>
 	<br>
 <% end %>
+
 <% if @regions.any? %>
 <h2><%= t('regions.show.title') %></h2>
   <tbody>
@@ -79,6 +83,10 @@
         </div>
       	</div>
     <% end %>
+  </tbody>	
+  <br>
+<% end %>
+
 <% if @itineraries.any? %>
 <h2><%= t('itineraries.show.title') %></h2>
   <tbody>
@@ -86,16 +94,23 @@
         <div class="card bg-light mt-3">
         <div class="card-body">
         <h3 class="card-title"><strong><%= link_to itinerary.name, itinerary %></strong></h3>
-        <p class="card-text">
-          <br>
-          <%= truncate(Sanitize.fragment( itinerary.content), length: 100) %>
-        </p>
         </div>
         </div>
     <% end %>
-    </tbody>
+  </tbody>
   <br>
 <% end %>
-  	</tbody>	
-  	<br>
+
+<% if @users.any? %>
+<h2><%= t('users.home.title') %></h2>
+  <tbody>
+    <% @users.each do |user| %>
+        <div class="card bg-light mt-3">
+        <div class="card-body">
+        <h3 class="card-title"><strong><%= link_to user.nickname, user %></strong></h3>
+        </div>
+        </div>
+    <% end %>
+  </tbody>
+  <br>
 <% end %>

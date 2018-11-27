@@ -1,4 +1,4 @@
-<h1>My Article</h1>
+<h1>Shared Article</h1>
 
 <tbody>
   <% @posts.each do |post| %>
@@ -32,4 +32,39 @@
       </div>
     </div>
   <% end %>
+<br><br>
+<h1>Shared Itinerary</h1>
+<% @itineraries.each do |itinerary| %>
+    <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to itinerary.name, itinerary %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment( itinerary.content), length: 100) %>
+          <p> <%= link_to "read full", itinerary, class: 'text-primary' %> </p>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+            <span>views: <%= itinerary.view %></span>
+          </li>
+          <% if user_signed_in? %>
+          <% if @user.id == current_user.id -%>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Edit', edit_itinerary_path(itinerary) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </li>
+          <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+
 </tbody>

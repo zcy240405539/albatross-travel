@@ -4,6 +4,7 @@ zh-CN:
   language: "中文"
   appname: "候鸟旅行"
   explore: "发现"
+  footer: "Albatross 版权所有，保留一切权利。"
   activerecord:
     attributes:
       user:
@@ -23,14 +24,16 @@ zh-CN:
         sign_up: "注册"
   home:
     home:
-      title: "行 万里路"
+      title: "行万里路 - 分享你的故事"
     search:
       title: "搜索结果"
       search: "搜索"
-      searchText: "搜索攻略,景点,城市,国家/地区"
+      searchText: "搜索地点,攻略,行程与用户"
   users:
+    home:
+      title: "用户" 
     show:
-      title: "我的旅途"
+      title: "我的分享"
   posts:
     show:
       title: "攻略"

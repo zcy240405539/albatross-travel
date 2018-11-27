@@ -22,14 +22,15 @@
   <%#/div%>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label :intro %>
+    <%= form.text_field :intro %>
   </div>
 
   <div class="field">
-    <%= form.label :intro %>
-    <%= form.text_area :intro %>
+    <%= form.label :content %>
+    <%= form.cktext_area :content %>
   </div>
+
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="actions">

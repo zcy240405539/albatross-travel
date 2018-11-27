@@ -2,36 +2,51 @@
 
 <h1>Itineraries</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Localname</th>
-      <th>Content</th>
-      <th>Intro</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<br><br>
   <tbody>
     <% @itineraries.each do |itinerary| %>
-      <tr>
-        <td><%= itinerary.name %></td>
-        <td><%# itinerary.localName %></td>
-        <td><%= itinerary.content %></td>
-        <td><%= itinerary.intro %></td>
-        <td><%= link_to 'View Daily Plan', itinerary %></td>
-        <% if user_signed_in? %>
-        <% if current_user.superadmin_role? %>
-        <td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
-        <td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% end %>
-      </tr>
+      <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to itinerary.name, itinerary %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment(itinerary.intro), length: 100) %>
+          </span>
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment(itinerary.content), length: 100) %>
+          <p> <%= link_to "read full", itinerary, class: 'text-primary' %> </p>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+           <span><%= itinerary.dailies.count %> day(s)</span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= link_to 'Show', itinerary %></span>
+          </li>
+          <% if user_signed_in? %>
+          <% if itinerary.user_id == current_user.id %>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Edit', edit_itinerary_path(itinerary) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </li>
+          <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+      </div>
     <% end %>
   </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Itinerary', new_itinerary_path %>
+<br><br>
+<% if user_signed_in? %>
+<p> <%= link_to "New Itinerary", new_itinerary_path, class: 'btn btn-primary active' %> </p>
+<% else %>
+<p> <%= link_to "New Itinerary", new_user_session_path, class: 'btn btn-primary active' %> </p>
+<% end %>

@@ -2,41 +2,51 @@
 
 <h1>Cities</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name    |</th>
-      <th>Local Name    |</th>
-      <th>Intro    |</th>
-
-      <th>Region/Country    |</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<br>
   <tbody>
     <% @cities.each do |city| %>
-      <tr>
-        <td><%= city.name %></td>
-        <td><%= city.localName %></td>
-        <td><%= city.intro %></td>
-        <td><%# city.content %></td>
-        <td><%= region_select (city.region_id) %></td>
-        <td><%= link_to 'Show', city %></td>
-        <% if user_signed_in? %>
-        <% if current_user.superadmin_role? %>
-        <td><%= link_to 'Edit', edit_city_path(city) %></td>
-        <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end -%>
-        <% end -%>
-      </tr>
+      <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to city.name, city %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment(city.intro), length: 100) %>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+           <span><%= city.localName %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= region_select (city.region_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= link_to 'Show', city %></span>
+          </li>
+          <% if user_signed_in? %>
+          <% if current_user.superadmin_role? %>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Edit', edit_city_path(city) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </li>
+          <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+      </div>
     <% end %>
   </tbody>
-</table>
 
-<br>
+<br><br>
 <% if user_signed_in? %>
 <% if current_user.superadmin_role? %>
-<%= link_to 'New City', new_city_path %>
+<p> <%= link_to "New City", new_city_path, class: 'btn btn-primary active' %> </p>
 <% end -%>
 <% end -%>

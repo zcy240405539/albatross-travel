@@ -8,9 +8,7 @@ module AttractionsHelper
 
   def city_pairs
   	@cities.map do |city|
-   		#if city.region_id == rid
    			[city.name.to_s, city.id.to_i]
-  		#end
     end
   end
 

@@ -4,6 +4,7 @@ en:
   language: "English"
   appname: "Albatross"
   explore: "Explore"
+  footer: "All rights reserved by Albatross."
   activerecord:
     attributes:
       user:
@@ -23,14 +24,16 @@ en:
         sign_up: "Sign up"
   home:
     home:
-      title: "Explore Trip Life"
+      title: "Share - Travel  - Life"
     search:
       title: "Search Result"
       search: "Search"
-      searchText: "Articles,Attractions,Cities,Regions/Countries"
+      searchText: "Places, Shares & Users"
   users:
+    home:
+      title: "Users" 
     show:
-      title: "My Articles"
+      title: "My Shares"
   posts:
     show:
       title: "Articles"

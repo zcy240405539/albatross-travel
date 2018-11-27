@@ -13,6 +13,8 @@ class ItinerariesController < ApplicationController
     @cities = City.all
     @regions = Region.all
     @attractions = Attraction.all
+    @posts = Post.all
+    # @dailies = Daily.where(daily_id: @itinerary).order("createed_at DESC")
   end
 
   # GET /itineraries/new

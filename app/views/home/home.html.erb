@@ -19,7 +19,6 @@
 
   <% if user_signed_in? %>
   <main role="main" class="container " >
-    <h1 class="jumbotron-heading">Home Page</h1>
     <h1 class="jumbotron-heading"><%= t('welcome') %>!</h1>
     <h1 class="jumbotron-heading"><%= current_user.email %></h1>
   </main>
@@ -29,8 +28,11 @@
     <main role="main" class="container " >
       <section class="jumbotron-fluid text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Explore</h1>
-          <p class="lead text-muted">Travel. Life.</p>
+          <br><br>
+          <h1 class="jumbotron-heading"><%= t('explore') %></h1>
+          <br><br>
+          <p class="lead text-muted"><%= t('home.home.title') %></p>
+          <br><br>
           <p>
             <a href="/account/login" class="btn btn-primary btn-lg"><%= t('devise.sessions.new.sign_in') %></a>
             <a href="/account/sign_up" class="btn btn-secondary btn-lg"><%= t('devise.registrations.new.sign_up') %></a>
@@ -42,7 +44,7 @@
   <% end %>
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted"><%= t('footer') %></span>
       </div>
     </footer>
   </body>

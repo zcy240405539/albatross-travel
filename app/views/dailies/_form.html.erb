@@ -2,12 +2,11 @@
 
   <p>
     <%= form.label 'Day Number' %><br>
-    <%= form.text_field :daynumber %>
+    <%= form.number_field :daynumber %>
   </p>
 
   <p>
     <%= form.label 'Select Date' %><br>
-    <%# form.text_field :dailydate %>
     <%= form.date_select :dailydate %>
   </p>
 
@@ -27,11 +26,18 @@
   </p>
 
   <p><%= "Cannot Find the Attraction You Need?" %>&ensp;<%= link_to "Create New Attraction",  new_attraction_path, class: 'text-primary' %></p>
+
+  <p>
+    <%= form.label 'Article' %>
+    <%= text_field_tag(:post_id, nil, id:"post_name", data: { behavior: 'autocompletepost' }, placeholder: (t('posts.show.title')), class: 'form-control mr-sm-3') %>
+  </p>  
+
   <p>
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.cktext_area :content %>
   </p>
 
+  <%= form.hidden_field :post_id, id: "post_id" %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <p>
     <%= form.submit %>

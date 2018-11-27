@@ -29,7 +29,7 @@
 <br><br>
 <h2> <%= @itinerary.dailies.count %> Day(s) Trip </h2>
 <br>
-	<%= render @itinerary.dailies %> 
+	<%= render @itinerary.dailies.order("daynumber ASC") %> 
 <br><br>
 <% if user_signed_in? %>
   <% if @itinerary.user_id == current_user.id %>

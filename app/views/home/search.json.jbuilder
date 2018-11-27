@@ -17,7 +17,7 @@ json.attractions do
 		json.name attraction.name
 		json.localName attraction.localName
 		json.url attraction_path(attraction)
-	end	
+	end
 end
 
 json.cities do 
@@ -33,5 +33,12 @@ json.regions do
 		json.name region.name
 		json.localName region.localName
 		json.url region_path(region)
+	end
+end
+
+json.users do 
+	json.array!(@users) do |user|
+		json.name user.nickname
+		json.url user_path(user)
 	end
 end

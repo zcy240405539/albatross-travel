@@ -1,12 +1,25 @@
 <p>
-<li>Day: <%= daily.daynumber %> | Date: <%= daily.dailydate.try(:strftime, '%v') %> </li>
-<span>Country: <%= region_select (daily.region_id) %></span>
-<span> | City: <%= city_select (daily.city_id) %></span>
-<span> | Attraction: <%= attraction_select (daily.attraction_id) %></span>
+	<li>Day: <%= daily.daynumber %> | Date: <%= daily.dailydate.try(:strftime, '%v') %> </li>
+	<% if daily.region_id != nil %>
+		<span>Country: <%= link_to region_select(daily.region_id), region_link_select(daily.region_id) %></span>
+	<% end %>
+	<% if daily.city_id != nil %>
+		<span> | City: <%= link_to city_select(daily.city_id), city_link_select(daily.city_id) %></span>
+	<% end %>
+	<% if daily.attraction_id != nil %>
+		<span> | Attraction: <%= link_to attraction_select(daily.attraction_id), attraction_link_select(daily.attraction_id) %></span>
+	<% end %>
+</p>
+<p>
+	<% if daily.post_id != nil %>
+		<span>Article: <%= link_to post_select(daily.post_id), post_link_select(daily.post_id) %></span>
+	<% end %>
 </p>
 <p>
 <%# time_ago_in_words(daily.created_at) %>
-<li>Content: <%= daily.content %></li>
+	<% if daily.content != '' %>
+		Content: <%= daily.content %>
+	<% end %>
 </p>
 
 <% if user_signed_in? %>

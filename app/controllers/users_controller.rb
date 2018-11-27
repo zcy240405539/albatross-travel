@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
 	def show
 		@posts = @user.posts
+		@itineraries = @user.itineraries
 	end
 
 	private

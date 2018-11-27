@@ -6,21 +6,33 @@ class HomeController < ApplicationController
 	end
 
 	def search
+		@regions = Region.ransack(name_cont: params[:q]).result(distinct: true)
+		@cities = City.ransack(name_cont: params[:q]).result(distinct: true)
+		@attractions = Attraction.ransack(name_cont: params[:q]).result(distinct: true)		
 		@posts = Post.ransack(title_cont: params[:q]).result(distinct: true)
 		@itineraries = Itinerary.ransack(name_cont: params[:q]).result(distinct: true)
-		@attractions = Attraction.ransack(name_cont: params[:q]).result(distinct: true)
-		@cities = City.ransack(name_cont: params[:q]).result(distinct: true)
-		@regions = Region.ransack(name_cont: params[:q]).result(distinct: true)
-		#render json: {posts: []}
+		@users = User.ransack(name_cont: params[:q]).result(distinct: true)
 
 		respond_to do |format|
 			format.html {}
 			format.json {
-				@posts = @posts.limit(20)
-				@itineraries = @itineraries.limit(20)
-				@attractions = @attractions.limit(20)
-				@cities = @cities.limit(20)
-				@regions = @regions.limit(20)
+				@regions = @regions.limit(3)
+				@cities = @cities.limit(3)
+				@attractions = @attractions.limit(3)
+				@posts = @posts.limit(3)
+				@itineraries = @itineraries.limit(3)
+				@users = @users.limit(3)
+			}
+		end
+	end
+
+	def searchPost
+		@posts = Post.ransack(title_cont: params[:q]).result(distinct: true)
+
+		respond_to do |format|
+			format.html {}
+			format.json {
+				@posts = @posts.limit(5)
 			}
 		end
 	end

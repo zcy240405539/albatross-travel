@@ -18,6 +18,12 @@ module DailiesHelper
     end
   end
 
+  def post_pairs
+    @posts.map do |post|
+      [post.title.to_s, post.id.to_i]
+    end
+  end
+
 
   def region_select (rid)
   	@regions.map do |region|
@@ -42,4 +48,45 @@ module DailiesHelper
   		end
     end
   end
+
+  def post_select (pid)
+    @posts.map do |post|
+      if post.id == pid
+        return post.title.to_s
+      end
+    end
+  end
+
+  def region_link_select (rid)
+    @regions.map do |region|
+      if region.id == rid
+        return region_path(region)
+      end
+    end
+  end
+
+  def city_link_select (cid)
+    @cities.map do |city|
+      if city.id == cid
+        return city_path(city)
+      end
+    end
+  end
+
+  def attraction_link_select (aid)
+    @attractions.map do |attraction|
+      if attraction.id == aid
+        return attraction_path(attraction)
+      end
+    end
+  end
+
+  def post_link_select (pid)
+    @posts.map do |post|
+      if post.id == pid
+        return post_path(post)
+      end
+    end
+  end
+
 end

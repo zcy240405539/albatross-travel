@@ -2,43 +2,53 @@
 
 <h1>Attractions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name    |</th>
-      <th>Local Name    |</th>
-      <th>Intro    |</th>
-
-      <th>Region/Country    |</th>
-      <th>City    |</th>     
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<br>
   <tbody>
     <% @attractions.each do |attraction| %>
-      <tr>
-        <td><%= attraction.name %></td>
-        <td><%= attraction.localName %></td>
-        <td><%# attraction.content %></td>
-        <td><%= attraction.intro %></td>
-        <td><%= region_select (attraction.region_id) %></td>
-        <td><%= city_select (attraction.city_id) %></td>
-        <td><%= link_to 'Show', attraction %></td>
-        <% if user_signed_in? %>
-        <% if current_user.superadmin_role? %>
-        <td><%= link_to 'Edit', edit_attraction_path(attraction) %></td>
-        <td><%= link_to 'Destroy', attraction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end -%>
-        <% end -%>
-      </tr>
+      <div class="card bg-light mt-3">
+      <div class="card-body">
+        <h3 class="card-title"><strong> <%= link_to attraction.name, attraction %> </strong></h3>
+        <p class="card-text">
+          <span class="postpreview">
+          <%= truncate(Sanitize.fragment(attraction.intro), length: 100) %>
+          </span>
+        </p>
+
+        <ul class="list-inline text-muted mt-2">
+          <li class="list-inline-item">
+           <span><%= attraction.localName %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= city_select(attraction.city_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= region_select(attraction.region_id) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+           <span><%= link_to 'Show', attraction %></span>
+          </li>
+          <% if user_signed_in? %>
+          <% if current_user.superadmin_role? %>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Edit', edit_attraction_path(attraction) %></span>
+          </li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item">
+            <span><%= link_to 'Destroy', attraction, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </li>
+          <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+      </div>
     <% end %>
   </tbody>
-</table>
 
-<br>
+<br><br>
 <% if user_signed_in? %>
-<% if current_user.superadmin_role? %>
-<%= link_to 'New Attraction', new_attraction_path %>
-<% end -%>
+<p> <%= link_to "New Attraction", new_attraction_path, class: 'btn btn-primary active' %> </p>
 <% end -%>

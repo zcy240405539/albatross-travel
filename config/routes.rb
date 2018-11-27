@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   get :search, controller: :home
+  get :searchPost, controller: :home
   root to: 'home#home'  
   resources :regions
   resources :cities
